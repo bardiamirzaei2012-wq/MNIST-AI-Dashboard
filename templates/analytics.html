@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Analytics | MNIST AI Dashboard
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+
+<!-- ==========================================
+        Loading
+========================================== -->
+
+<!-- <div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <h2>
+
+        Loading Analytics...
+
+    </h2>
+
+</div> -->
+
+
+
+<!-- ==========================================
+        Sidebar
+========================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <span>
+
+            MNIST AI
+
+        </span>
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="/">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+
+                    Dashboard
+
+                </span>
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="/analytics">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>
+
+                    Analytics
+
+                </span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+
+
+<!-- ==========================================
+        Main
+========================================== -->
+
+<div class="main">
+
+<header>
+
+    <div>
+
+        <h1>
+
+            Analytics Dashboard
+
+        </h1>
+
+        <p>
+
+            Monitor model performance, statistics and predictions.
+
+        </p>
+
+    </div>
+
+    <div class="headerButtons">
+
+        <button id="refreshStats">
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Refresh
+
+        </button>
+
+        <button id="exportJSON">
+
+            <i class="fa-solid fa-download"></i>
+
+            Export
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==========================================
+        Hero
+========================================== -->
+
+<section class="hero">
+
+    <div class="heroText">
+
+        <h2>
+
+            CNN Model Analytics
+
+        </h2>
+
+        <p>
+
+            View model accuracy, prediction speed,
+            architecture details and live statistics
+            collected from your Flask application.
+
+        </p>
+
+    </div>
+
+    <div class="heroImage">
+
+        <i class="fa-solid fa-chart-column"></i>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Statistics Cards
+========================================== -->
+
+<section class="stats">
+
+    <div class="card">
+
+        <span>
+
+            Model Accuracy
+
+        </span>
+
+        <h2 id="">
+
+            99.63%
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Prediction Speed
+
+        </span>
+
+        <h2 id="speed">
+
+            0 ms
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Total Predictions
+
+        </span>
+
+        <h2 id="predictionCount">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Average Confidence
+
+        </span>
+
+        <h2 id="avgConfidence">
+
+            0%
+
+        </h2>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Model Information
+========================================== -->
+
+<section class="stats">
+
+    <div class="card">
+
+        <span>
+
+            Model Layers
+
+        </span>
+
+        <h2 id="layers">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Parameters
+
+        </span>
+
+        <h2 id="params">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Last Prediction
+
+        </span>
+
+        <h2 id="lastPrediction">
+
+            -
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Last Confidence
+
+        </span>
+
+        <h2 id="lastConfidence">
+
+            0%
+
+        </h2>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Live Status
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            Live System Status
+
+        </h2>
+
+    </div>
+
+    <div class="statusGrid">
+
+        <div class="statusItem">
+
+            <span>
+
+                Flask Server
+
+            </span>
+
+            <div class="onlineBadge">
+
+                ONLINE
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                TensorFlow
+
+            </span>
+
+            <div class="onlineBadge">
+
+                READY
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                Prediction API
+
+            </span>
+
+            <div class="onlineBadge">
+
+                ACTIVE
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Charts
+========================================== -->
+
+<section class="workspace">
+
+    <!-- Probability Chart -->
+
+    <div class="panel fadeIn">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Prediction Probability
+
+            </h2>
+
+        </div>
+
+        <div class="chartContainer">
+
+            <canvas id="probabilityChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- Accuracy Chart -->
+
+    <div class="panel fadeIn">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Accuracy History
+
+            </h2>
+
+        </div>
+
+        <div class="chartContainer">
+
+            <canvas id="accuracyChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Loss & Speed
+========================================== -->
+
+<section class="workspace">
+
+    <!-- Loss -->
+
+    <div class="panel fadeIn">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-wave-square"></i>
+
+                Loss Curve
+
+            </h2>
+
+        </div>
+
+        <div class="chartContainer">
+
+            <canvas id="lossChart"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- Prediction Speed -->
+
+    <div class="panel fadeIn">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-gauge-high"></i>
+
+                Prediction Speed
+
+            </h2>
+
+        </div>
+
+        <div class="chartContainer">
+
+            <canvas id="speedChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Confusion Matrix
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-table-cells-large"></i>
+
+            Confusion Matrix
+
+        </h2>
+
+    </div>
+
+    <div class="chartContainer">
+
+        <canvas id="confusionChart"></canvas>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Model Summary
+========================================== -->
+
+<section class="panel fadeIn">
+<div class="card architecture-card">
+
+    <div class="card-header">
+
+        <h2>
+
+            <i class="fas fa-project-diagram"></i>
+
+            Model Architecture
+
+        </h2>
+
+    </div>
+
+    <div class="architecture-flow">
+
+        <div class="layer conv">
+            Conv2D
+            <span>32 Filters</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer batch">
+            BatchNormalization
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer conv">
+            Conv2D
+            <span>32 Filters</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer pool">
+            MaxPooling2D
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer conv">
+            Conv2D
+            <span>64 Filters</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer conv">
+            Conv2D
+            <span>64 Filters</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer flatten">
+            Flatten
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer dense">
+            Dense
+            <span>256 Neurons</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer dense">
+            Dense
+            <span>128 Neurons</span>
+        </div>
+
+        <div class="arrow">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+
+        <div class="layer output">
+            Dense
+            <span>10 Classes</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</section>
+
+
+
+<!-- ==========================================
+        System Information
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-server"></i>
+
+            System Information
+
+        </h2>
+
+    </div>
+
+    <div class="systemGrid">
+
+        <div>
+
+            <span>
+
+                TensorFlow
+
+            </span>
+
+            <strong id="tfVersion">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                NumPy
+
+            </span>
+
+            <strong id="numpyVersion">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                OpenCV
+
+            </span>
+
+            <strong id="opencvVersion">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                Model Layers
+
+            </span>
+
+            <strong id="layerCount">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                Parameters
+
+            </span>
+
+            <strong id="parameterCount">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                Predictions
+
+            </span>
+
+            <strong id="systemPredictions">
+
+                0
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Health Status
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            Server Health
+
+        </h2>
+
+    </div>
+
+    <div class="statusGrid">
+
+        <div class="statusItem">
+
+            <span>
+
+                Server Status
+
+            </span>
+
+            <div
+                class="onlineBadge"
+                id="serverStatus">
+
+                Checking...
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                Model Loaded
+
+            </span>
+
+            <div
+                class="onlineBadge"
+                id="modelStatus">
+
+                Checking...
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                API Status
+
+            </span>
+
+            <div
+                class="onlineBadge"
+                id="apiStatus">
+
+                Checking...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Footer
+========================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <h3>
+
+            MNIST AI Dashboard
+
+        </h3>
+
+        <p>
+
+            Analytics dashboard for handwritten
+            digit recognition using TensorFlow,
+            Flask and OpenCV.
+
+        </p>
+
+    </div>
+
+    <div>
+
+        <h4>
+
+            Navigation
+
+        </h4>
+
+        <ul>
+
+            <li>
+
+                <a href="/">
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="/analytics">
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div>
+
+        <h4>
+
+            Frameworks
+
+        </h4>
+
+        <p>
+
+            TensorFlow
+
+        </p>
+
+        <p>
+
+            Flask
+
+        </p>
+
+        <p>
+
+            OpenCV
+
+        </p>
+
+        <p>
+
+            Chart.js
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ==========================================
+        Copyright
+========================================== -->
+
+<div class="copyright">
+
+    © 2026 MNIST AI Dashboard
+    | Analytics Module
+
+</div>
+
+
+
+<!-- ==========================================
+        Toast
+========================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastText">
+
+        Success
+
+    </span>
+
+</div>
+
+
+
+<!-- ==========================================
+        Scripts
+========================================== -->
+
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+</body>
+
+</html>

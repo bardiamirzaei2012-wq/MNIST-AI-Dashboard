@@ -1,1 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>MNIST AI Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+
+<!-- ===========================
+     Loading Screen
+=========================== -->
+
+<div id="loadingScreen">
+
+    <div class="loader"></div>
+
+    <h2>Loading AI Dashboard...</h2>
+
+</div>
+
+
+
+<!-- ===========================
+        Sidebar
+=========================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <span>MNIST AI</span>
+
+    </div>
+
+    <ul>
+
+        <li class="active">
+
+            <a href="/">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/analytics">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Analytics</span>
+
+            </a>
+
+        </li>
+
+
+
+    </ul>
+
+</aside>
+
+
+
+<!-- ===========================
+        Main
+=========================== -->
+
+<div class="main">
+
+
+<header>
+
+    <div>
+
+        <h1>
+
+            Handwritten Digit Recognition
+
+        </h1>
+
+        <p>
+
+            TensorFlow CNN + Flask Dashboard
+
+        </p>
+
+    </div>
+
+    <div class="headerButtons">
+
+        <button
+            id="refreshStats">
+
+            <i class="fa-solid fa-rotate"></i>
+
+            Refresh
+
+        </button>
+
+        <button
+            id="exportJSON">
+
+            <i class="fa-solid fa-file-export"></i>
+
+            Export
+
+        </button>
+
+
+
+    </div>
+
+</header>
+
+
+
+<!-- ===========================
+        Hero
+=========================== -->
+
+<section class="hero fadeIn">
+
+    <div class="heroText">
+
+        <h2>
+
+            AI Digit Recognition
+
+        </h2>
+
+        <p>
+
+            Draw any handwritten digit from 0 to 9
+            or upload an image.
+            Our trained CNN model predicts the number
+            and shows confidence, probabilities,
+            history and analytics instantly.
+
+        </p>
+
+            <div class="heroButtons">
+
+                <button
+                    id="predictTop">
+
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    Predict
+
+                </button>
+
+                <button
+                    id="clearTop">
+
+                    <i class="fa-solid fa-eraser"></i>
+
+                    Clear
+
+                </button>
+
+            </div>
+
+    </div>
+
+    <div class="heroImage">
+
+        <i class="fa-solid fa-brain"></i>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===========================
+      Statistics
+=========================== -->
+
+<section class="stats">
+
+    <div class="card">
+
+        <span>Accuracy</span>
+
+        <h2 id="">
+
+            99.63%
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>Predictions</span>
+
+        <h2 id="predictionCount">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>Average Confidence</span>
+
+        <h2 id="avgConfidence">
+
+            0%
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>Speed</span>
+
+        <h2 id="speed">
+
+            0 ms
+
+        </h2>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Workspace
+========================================== -->
+
+<section class="workspace">
+
+    <!-- Drawing Panel -->
+
+    <div class="panel slideLeft">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-pen"></i>
+
+                Draw Digit
+
+            </h2>
+
+        </div>
+
+        <div class="canvasContainer">
+
+            <canvas
+                id="canvas"
+                width="280"
+                height="280">
+            </canvas>
+
+        </div>
+
+        <div class="canvasButtons">
+
+            <button id="predictBtn">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Predict
+
+            </button>
+
+            <button id="clearCanvas">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Clear
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Upload Panel -->
+
+    <div class="panel slideRight">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-upload"></i>
+
+                Upload Image
+
+            </h2>
+
+        </div>
+
+        <label class="uploadBox">
+
+            <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                hidden>
+
+            <img id="preview" src="" alt="Preview">
+
+            <div id="uploadContent">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p>Click to Upload</p>
+            </div>
+
+        </label>
+
+        <!-- <div class="previewContainer">
+
+            <img
+
+                id="preview"
+
+                src=""
+
+                alt="Preview"
+
+                style="display:none;">
+
+        </div> -->
+        <div class="uploadButtons">
+            <button id="predictUpload">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Predict
+            </button>
+
+            <button id="deleteUpload">
+                <i class="fa-solid fa-trash"></i>
+                Delete
+            </button>
+        </div>
+
+    </div>
+
+
+
+    <!-- Prediction Result -->
+
+    <div class="panel fadeIn">
+
+        <div class="panelHeader">
+
+            <h2>
+
+                <i class="fa-solid fa-robot"></i>
+
+                Prediction
+
+            </h2>
+
+        </div>
+
+        <div class="digitBox">
+
+            <span id="predictionResult">
+
+                -
+
+            </span>
+
+        </div>
+
+        <div class="confidenceBox">
+
+            <span>
+
+                Confidence
+
+            </span>
+
+            <h1 id="confidence">
+
+                0%
+
+            </h1>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Quick Actions
+========================================== -->
+
+<section class="quickActions">
+
+    <div class="actionCard">
+
+        <i class="fa-solid fa-image"></i>
+
+        <h3>
+
+            Upload Image
+
+        </h3>
+
+        <p>
+
+            Upload a handwritten digit
+            from your computer.
+
+        </p>
+
+    </div>
+
+    <div class="actionCard">
+
+        <i class="fa-solid fa-pen"></i>
+
+        <h3>
+
+            Draw Number
+
+        </h3>
+
+        <p>
+
+            Draw directly on the canvas
+            using your mouse.
+
+        </p>
+
+    </div>
+
+    <div class="actionCard">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <h3>
+
+            CNN Prediction
+
+        </h3>
+
+        <p>
+
+            TensorFlow model predicts
+            digits in milliseconds.
+
+        </p>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        Probability
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+            Prediction Probability
+
+        </h2>
+
+    </div>
+
+    <div id="probabilityContainer">
+
+        <!-- JavaScript Creates Bars -->
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+        History
+========================================== -->
+
+<section
+    id="historySection"
+    class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Prediction History
+
+        </h2>
+
+        <button id="clearHistory">
+
+            <i class="fa-solid fa-trash"></i>
+
+            Clear History
+
+        </button>
+
+    </div>
+
+    <div class="historyTable">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Prediction</th>
+
+                    <th>Confidence</th>
+
+                    <th>Time</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historyBody">
+
+                <tr>
+
+                    <td colspan="4">
+
+                        No predictions yet...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Live Statistics
+========================================== -->
+
+<section class="stats">
+
+    <div class="card">
+
+        <span>
+
+            Last Prediction
+
+        </span>
+
+        <h2 id="lastPrediction">
+
+            -
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Last Confidence
+
+        </span>
+
+        <h2 id="lastConfidence">
+
+            0%
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Model Layers
+
+        </span>
+
+        <h2 id="layers">
+
+            0
+
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <span>
+
+            Parameters
+
+        </span>
+
+        <h2 id="params">
+
+            0
+
+        </h2>
+
+    </div>
+
+</section>
+<!-- ==========================================
+        About Model
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-brain"></i>
+
+            About Model
+
+        </h2>
+
+    </div>
+
+    <div class="aboutGrid">
+
+        <div class="aboutCard">
+
+            <i class="fa-solid fa-network-wired"></i>
+
+            <h3>CNN Architecture</h3>
+
+            <p>
+
+                Convolutional Neural Network
+                trained on the MNIST dataset.
+
+            </p>
+
+        </div>
+
+        <div class="aboutCard">
+
+            <i class="fa-solid fa-bullseye"></i>
+
+            <h3>Accuracy</h3>
+
+            <p>
+
+                Test Accuracy over
+                99%.
+
+            </p>
+
+        </div>
+
+        <div class="aboutCard">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h3>Fast Prediction</h3>
+
+            <p>
+
+                Predicts handwritten digits
+                within milliseconds.
+
+            </p>
+
+        </div>
+
+        <div class="aboutCard">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <h3>TensorFlow</h3>
+
+            <p>
+
+                Powered by TensorFlow,
+                NumPy and OpenCV.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        System Information
+========================================== -->
+
+<section
+    id="systemSection"
+    class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-server"></i>
+
+            System Information
+
+        </h2>
+
+    </div>
+
+    <div class="systemGrid">
+
+        <div>
+
+            <span>
+
+                TensorFlow
+
+            </span>
+
+            <strong id="tfVersion">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                OpenCV
+
+            </span>
+
+            <strong id="opencvVersion">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                Layers
+
+            </span>
+
+            <strong id="layerCount">
+
+                -
+
+            </strong>
+
+        </div>
+
+        <div>
+
+            <span>
+
+                Parameters
+
+            </span>
+
+            <strong id="parameterCount">
+
+                -
+
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Live Status
+========================================== -->
+
+<section class="panel fadeIn">
+
+    <div class="panelHeader">
+
+        <h2>
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+            Live Status
+
+        </h2>
+
+    </div>
+
+    <div class="statusGrid">
+
+        <div class="statusItem">
+
+            <span>
+
+                Flask Server
+
+            </span>
+
+            <div class="onlineBadge">
+
+                ONLINE
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                TensorFlow Model
+
+            </span>
+
+            <div class="onlineBadge">
+
+                READY
+
+            </div>
+
+        </div>
+
+        <div class="statusItem">
+
+            <span>
+
+                Prediction API
+
+            </span>
+
+            <div class="onlineBadge">
+
+                ACTIVE
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+        Footer
+========================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <h3>
+
+            MNIST AI Dashboard
+
+        </h3>
+
+        <p>
+
+            Professional AI dashboard
+            built with Flask,
+            TensorFlow,
+            OpenCV
+            and JavaScript.
+
+        </p>
+
+    </div>
+
+    <div>
+
+        <h4>
+
+            Navigation
+
+        </h4>
+
+        <ul>
+
+            <li>
+
+                <a href="/">Dashboard</a>
+
+            </li>
+
+            <li>
+
+                <a href="/analytics">
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div>
+
+        <h4>
+
+            Version
+
+        </h4>
+
+        <p>
+
+            Version 2.0
+
+        </p>
+
+        <p>
+
+            2026
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<div class="copyright">
+
+    © 2026 MNIST AI Dashboard
+
+</div>
+
+
+
+<!-- ==========================================
+        Toast
+========================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastText">
+
+        Success
+
+    </span>
+
+</div>
+
+
+
+<!-- ==========================================
+        JavaScript
+========================================== -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
