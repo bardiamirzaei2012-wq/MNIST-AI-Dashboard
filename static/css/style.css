@@ -1,1 +1,1924 @@
+/* ==========================================
+   Google Font
+========================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ==========================================
+   Reset
+========================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#0f172a;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+}
+
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#3b82f6;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#2563eb;
+
+}
+
+
+/* ==========================================
+   Links
+========================================== */
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+
+/* ==========================================
+   Buttons
+========================================== */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ==========================================
+   Loading Screen
+========================================== */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#020617;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    z-index:99999;
+
+}
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    border:6px solid rgba(255,255,255,.2);
+
+    border-top:6px solid #3b82f6;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================
+   Sidebar
+========================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:rgba(15,23,42,.95);
+
+    backdrop-filter:blur(20px);
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+    padding:30px 20px;
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:45px;
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+.logo i{
+
+    color:#3b82f6;
+
+    font-size:34px;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+.sidebar li{
+
+    margin:14px 0;
+
+}
+
+.sidebar li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    color:#cbd5e1;
+
+}
+
+.sidebar li a:hover,
+
+.sidebar li.active a{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.sidebar i{
+
+    width:22px;
+
+    text-align:center;
+
+}
+
+
+/* ==========================================
+   Main
+========================================== */
+
+.main{
+
+    margin-left:260px;
+
+    padding:40px;
+
+    min-height:100vh;
+
+}
+
+
+/* ==========================================
+   Header
+========================================== */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+header h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+header p{
+
+    color:#94a3b8;
+
+    margin-top:8px;
+
+}
+
+.headerButtons{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.headerButtons button{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 24px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+}
+
+.headerButtons button:hover{
+
+    background:#1d4ed8;
+
+}
+/* ==========================================
+   Hero Section
+========================================== */
+
+.hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:50px;
+
+    padding:45px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    margin-bottom:40px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:-80px;
+
+    top:-80px;
+
+    width:250px;
+
+    height:250px;
+
+    border-radius:50%;
+
+    background:#2563eb33;
+
+    filter:blur(60px);
+
+}
+
+.heroText{
+
+    flex:1;
+
+    z-index:2;
+
+}
+
+.heroText h2{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+    font-weight:700;
+
+}
+
+.heroText p{
+
+    color:#cbd5e1;
+
+    line-height:1.9;
+
+    font-size:17px;
+
+}
+
+.heroButtons{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+.heroButtons button{
+
+    padding:14px 28px;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+.heroButtons button:first-child{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+.heroButtons button:last-child{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+.heroImage{
+
+    width:230px;
+
+    height:230px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    box-shadow:0 0 60px rgba(37,99,235,.5);
+
+    animation:float 4s ease-in-out infinite;
+
+}
+
+.heroImage i{
+
+    font-size:110px;
+
+    color:white;
+
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px);
+
+    }
+
+}
+
+
+/* ==========================================
+   Statistics Cards
+========================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.card span{
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+}
+
+.card h2{
+
+    margin-top:15px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#38bdf8;
+
+}
+
+
+/* ==========================================
+   Panels
+========================================== */
+
+.panel{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:22px;
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+}
+
+.panelHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.panelHeader h2{
+
+    font-size:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.panelHeader i{
+
+    color:#3b82f6;
+
+}
+
+
+/* ==========================================
+   Workspace
+========================================== */
+
+.workspace{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+    gap:30px;
+
+    margin-bottom:40px;
+
+}
+
+
+/* ==========================================
+   Animations
+========================================== */
+
+.fadeIn{
+
+    animation:fadeIn .7s ease;
+
+}
+
+.slideLeft{
+
+    animation:slideLeft .7s ease;
+
+}
+
+.slideRight{
+
+    animation:slideRight .7s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+/* ==========================================
+   Canvas
+========================================== */
+
+.canvasContainer{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:20px 0;
+
+}
+
+#canvas{
+
+    width:280px;
+
+    height:280px;
+
+    background:#000;
+
+    border:3px solid #3b82f6;
+
+    border-radius:18px;
+
+    cursor:crosshair;
+
+    box-shadow:0 0 35px rgba(37,99,235,.35);
+
+    transition:.3s;
+
+}
+
+#canvas:hover{
+
+    transform:scale(1.02);
+
+    box-shadow:0 0 45px rgba(37,99,235,.6);
+
+}
+
+
+/* ==========================================
+   Canvas Buttons
+========================================== */
+
+.canvasButtons{
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+    margin-top:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.canvasButtons button{
+
+    padding:13px 26px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+#predictBtn{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+#predictBtn:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+#clearCanvas{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+#clearCanvas:hover{
+
+    background:#dc2626;
+
+}
+/* Upload Buttons */
+.uploadButtons{
+    display:flex;
+    gap:16px;
+    margin-top:20px;
+}
+
+.uploadButtons button{
+    flex:1;
+    height:48px;
+    border:none;
+    border-radius:14px;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:0.25s ease;
+}
+
+/* Predict */
+#predictUpload{
+    background:linear-gradient(135deg,#4f8cff,#2d63f5);
+    box-shadow:0 8px 18px rgba(52,112,255,.35);
+}
+
+/* Delete */
+#deleteUpload{
+    background:linear-gradient(135deg,#ff5f5f,#ef4444);
+    box-shadow:0 8px 18px rgba(239,68,68,.35);
+}
+
+/* Hover */
+.uploadButtons button:hover{
+    transform:translateY(-3px);
+    filter:brightness(1.08);
+}
+
+/* Click */
+.uploadButtons button:active{
+    transform:scale(.96);
+}
+
+/* Icons */
+.uploadButtons button i{
+    font-size:16px;
+}
+
+
+/* ==========================================
+   Upload Box
+========================================== */
+.uploadBox{
+    position:relative;
+    width:100%;
+    height:280px;
+    border:2px dashed #4f8cff;
+    border-radius:18px;
+    background:#1b2235;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    overflow:hidden;
+}
+
+#preview{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 90%;
+    max-height: 90%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    display: none;
+}
+#uploadContent{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    color:#d9e4ff;
+    transition:.3s;
+}
+
+#uploadContent i{
+    font-size:48px;
+}
+
+#uploadContent p{
+    font-size:18px;
+    font-weight:600;
+}
+
+
+
+/* ==========================================
+   Preview Image
+========================================== */
+
+.previewContainer{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:25px;
+
+}
+
+#preview{
+
+    max-width:230px;
+
+    border-radius:15px;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    box-shadow:0 0 25px rgba(0,0,0,.35);
+
+}
+
+
+/* ==========================================
+   Prediction Result
+========================================== */
+
+.digitBox{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:170px;
+
+    height:170px;
+
+    margin:20px auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    box-shadow:0 0 45px rgba(37,99,235,.5);
+
+}
+
+#predictionResult{
+
+    font-size:90px;
+
+    font-weight:700;
+
+    color:white;
+
+}
+
+
+/* ==========================================
+   Confidence
+========================================== */
+
+.confidenceBox{
+
+    text-align:center;
+
+    margin-top:20px;
+
+}
+
+.confidenceBox span{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:10px;
+
+}
+
+#confidence{
+
+    font-size:40px;
+
+    color:#22c55e;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================
+   Quick Actions
+========================================== */
+
+.quickActions{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:25px;
+
+    margin:40px 0;
+
+}
+
+.actionCard{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.actionCard:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+
+}
+
+.actionCard i{
+
+    font-size:45px;
+
+    color:#38bdf8;
+
+    margin-bottom:18px;
+
+}
+
+.actionCard h3{
+
+    margin-bottom:12px;
+
+    font-size:22px;
+
+}
+
+.actionCard p{
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+}
+/* ==========================================
+   Probability Bars
+========================================== */
+
+#probabilityContainer{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    margin-top:20px;
+
+}
+
+.probabilityRow{
+
+    display:grid;
+
+    grid-template-columns:45px 1fr 70px;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.digitLabel{
+
+    font-weight:700;
+
+    font-size:20px;
+
+    color:#38bdf8;
+
+    text-align:center;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:18px;
+
+    background:#1e293b;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.progressFill{
+
+    height:100%;
+
+    width:0;
+
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+
+    border-radius:20px;
+
+    transition:width .6s ease;
+
+}
+
+.percent{
+
+    text-align:right;
+
+    font-weight:600;
+
+    color:#cbd5e1;
+
+}
+
+
+/* ==========================================
+   History Table
+========================================== */
+
+.historyTable{
+
+    overflow-x:auto;
+
+}
+
+.historyTable table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+.historyTable th{
+
+    background:#1e3a8a;
+
+    padding:14px;
+
+    text-align:center;
+
+    color:white;
+
+}
+
+.historyTable td{
+
+    padding:14px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    color:#cbd5e1;
+
+}
+
+.historyTable tr:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+
+/* ==========================================
+   Clear History Button
+========================================== */
+
+#clearHistory{
+
+    background:#ef4444;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+#clearHistory:hover{
+
+    background:#dc2626;
+
+}
+
+
+/* ==========================================
+   Analytics Grid
+========================================== */
+
+.aboutGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:22px;
+
+}
+
+.aboutCard{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.aboutCard:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+}
+
+.aboutCard i{
+
+    font-size:48px;
+
+    color:#38bdf8;
+
+    margin-bottom:18px;
+
+}
+
+.aboutCard h3{
+
+    margin-bottom:12px;
+
+}
+
+.aboutCard p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   System Information
+========================================== */
+
+.systemGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.systemGrid div{
+
+    background:#111827;
+
+    border-radius:16px;
+
+    padding:22px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.systemGrid span{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+
+}
+
+.systemGrid strong{
+
+    font-size:22px;
+
+    color:#38bdf8;
+
+}
+
+
+/* ==========================================
+   Status
+========================================== */
+
+.statusGrid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:20px;
+
+}
+
+.statusItem{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#111827;
+
+    padding:18px 22px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.onlineBadge{
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    box-shadow:0 0 15px rgba(34,197,94,.4);
+
+}
+/* ==========================================
+   Footer
+========================================== */
+
+.footer{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:40px;
+
+    margin-top:60px;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer h3,
+.footer h4{
+
+    margin-bottom:18px;
+
+    color:#fff;
+
+}
+
+.footer p{
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+}
+
+.footer ul{
+
+    list-style:none;
+
+}
+
+.footer li{
+
+    margin:12px 0;
+
+}
+
+.footer a{
+
+    color:#cbd5e1;
+
+    transition:.3s;
+
+}
+
+.footer a:hover{
+
+    color:#38bdf8;
+
+}
+
+.copyright{
+
+    text-align:center;
+
+    margin:30px 0;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+
+/* ==========================================
+   Toast
+========================================== */
+
+.toast{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:16px 22px;
+
+    background:#22c55e;
+
+    color:white;
+
+    border-radius:14px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+    transform:translateY(120px);
+
+    opacity:0;
+
+    transition:.4s;
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+}
+
+.toast i{
+
+    font-size:22px;
+
+}
+
+
+/* ==========================================
+   Chart Container
+========================================== */
+
+.chartContainer{
+
+    width:100%;
+
+    min-height:420px;
+
+    background:rgba(255,255,255,.05);
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:25px;
+
+}
+
+.chartContainer canvas{
+
+    width:100%!important;
+
+    height:360px!important;
+
+}
+
+
+/* ==========================================
+   Utilities
+========================================== */
+
+.textCenter{
+
+    text-align:center;
+
+}
+
+.mt20{
+
+    margin-top:20px;
+
+}
+
+.mt40{
+
+    margin-top:40px;
+
+}
+
+.mb20{
+
+    margin-bottom:20px;
+
+}
+
+.hidden{
+
+    display:none!important;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.flexBetween{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.flexCenter{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+/* ==========================================
+   Hover Effects
+========================================== */
+
+.panel,
+.card,
+.aboutCard,
+.actionCard{
+
+    transition:.35s ease;
+
+}
+
+.panel:hover,
+
+.card:hover,
+
+.aboutCard:hover,
+
+.actionCard:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.30);
+
+}
+
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:1100px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:25px 10px;
+
+    }
+
+    .sidebar .logo span,
+
+    .sidebar li span{
+
+        display:none;
+
+    }
+
+    .main{
+
+        margin-left:90px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .main{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .sidebar{
+
+        display:none;
+
+    }
+
+    header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .hero{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .heroImage{
+
+        width:180px;
+
+        height:180px;
+
+    }
+
+    .heroImage i{
+
+        font-size:80px;
+
+    }
+
+    #canvas{
+
+        width:240px;
+
+        height:240px;
+
+    }
+
+    .workspace{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .panel{
+
+        padding:18px;
+
+    }
+
+    .headerButtons{
+
+        width:100%;
+
+    }
+
+    .headerButtons button{
+
+        flex:1;
+
+    }
+
+    .canvasButtons{
+
+        flex-direction:column;
+
+    }
+
+    .canvasButtons button{
+
+        width:100%;
+
+    }
+
+    .digitBox{
+
+        width:130px;
+
+        height:130px;
+
+    }
+
+    #predictionResult{
+
+        font-size:70px;
+
+    }
+
+}
+
+
+/* ==========================================
+   Selection
+========================================== */
+
+::selection{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+/* ==========================================
+   End
+========================================== */
+.architecture-card{
+
+    padding:30px;
+
+}
+
+.architecture-flow{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.layer{
+
+    width:260px;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    color:#fff;
+
+    font-weight:700;
+
+    text-align:center;
+
+    font-size:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.layer:hover{
+
+    transform:translateY(-4px) scale(1.03);
+
+}
+
+.layer span{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    opacity:.9;
+
+}
+
+.conv{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+.batch{
+
+    background:linear-gradient(135deg,#8b5cf6,#a855f7);
+
+}
+
+.pool{
+
+    background:linear-gradient(135deg,#06b6d4,#22d3ee);
+
+}
+
+.flatten{
+
+    background:linear-gradient(135deg,#14b8a6,#10b981);
+
+}
+
+.dense{
+
+    background:linear-gradient(135deg,#8b8b8b,#8b8b8b);
+
+}
+
+.output{
+
+    background:linear-gradient(135deg,#ef4444,#ff4a4a);
+
+}
+
+.arrow{
+
+    font-size:22px;
+
+    color:#94a3b8;
+
+}
