@@ -1,0 +1,32 @@
+[
+    {
+        "digit": 7,
+        "confidence": 96.63,
+        "prediction_time": 1590.49,
+        "timestamp": "2026-10-30 21:15:10"
+    },
+    {
+        "digit": 5,
+        "confidence": 100.0,
+        "prediction_time": 90.72,
+        "timestamp": "2026-07-25 12:22:56"
+    },
+    {
+        "digit": 9,
+        "confidence": 99.79,
+        "prediction_time": 136.32,
+        "timestamp": "2026-07-25 12:22:49"
+    },
+    {
+        "digit": 8,
+        "confidence": 63.88,
+        "prediction_time": 97.18,
+        "timestamp": "2026-07-25 12:22:44"
+    },
+    {
+        "digit": 7,
+        "confidence": 99.92,
+        "prediction_time": 135.57,
+        "timestamp": "2026-07-25 12:22:37"
+    }
+]
