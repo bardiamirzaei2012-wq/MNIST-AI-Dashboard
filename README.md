@@ -1,480 +1,296 @@
-🧠 MNIST AI Dashboard
-
-An interactive web dashboard for handwritten digit recognition powered by deep learning
-
-
-
-Preview • Features • Installation • Usage
-
-
-
-📖 About the Project
-
-MNIST AI Dashboard is a modern, interactive web application for recognizing handwritten digits (0–9) using a Convolutional Neural Network (CNN) trained on the famous MNIST dataset.
-
-It combines a high-accuracy deep learning model with a clean, user-friendly interface. Users can draw digits directly on a canvas or upload an image, then instantly see the predicted digit along with confidence scores and detailed analytics.
-
-
-
-✨ Features
-
-
-
-
-
-🎨 Interactive Canvas – Draw digits with mouse or touch
-
-
-
-📤 Image Upload – Upload handwritten digit images
-
-
-
-⚡ Real-time Prediction – Instant results with confidence percentage
-
-
-
-📊 Probability Distribution – Visual chart for all 10 digits
-
-
-
-📈 Analytics Page – Training history and prediction statistics with Chart.js
-
-
-
-🕒 Prediction History – Stores the last 100 predictions
-
-
-
-📋 Model Summary – View architecture details and system information
-
-
-
-🌙 Modern UI – Clean design with Font Awesome icons and Poppins font
-
-
-
-📱 Responsive Design
-
-
-
-🛠️ Tech Stack
-
-
-
-
-
-
-
-Layer
-
-
-
-Technology
-
-
-
-
-
-Backend
-
-
-
-Flask
-
-
-
-
-
-Machine Learning
-
-
-
-TensorFlow / Keras
-
-
-
-
-
-Image Processing
-
-
-
-OpenCV
-
-
-
-
-
-Frontend
-
-
-
-HTML5, CSS3, JavaScript
-
-
-
-
-
-Charts
-
-
-
-Chart.js
-
-
-
-
-
-Icons
-
-
-
-Font Awesome
-
-
-
-
-
-Font
-
-
-
-Poppins (Google Fonts)
-
-
-
-🏗️ Model Architecture
-
-The model is a Convolutional Neural Network (CNN) with the following structure:
-
-Conv2D(32) → BatchNormalization → Conv2D(32) → MaxPooling → Dropout(0.25)
-→ Conv2D(64) → BatchNormalization → Conv2D(64) → MaxPooling → Dropout(0.25)
-→ Flatten → Dense(256) → Dropout(0.5) → Dense(128) → Dense(10)
-
-
-
-
-
-Optimizer: Adam
-
-
-
-Loss Function: SparseCategoricalCrossentropy (from_logits=True)
-
-
-
-Epochs: 25
-
-
-
-Final Training Accuracy: ~99.02%
-
-
-
-Validation Accuracy: ~99.57%
-
-The training notebook is located at modelp/Emodel.ipynb.
-
-
-
-📂 Project Structure
-
-Mnist/
-├── app.py                      # Main Flask application
-├── model.h5                    # Trained Keras model
-├── training_history.json       # Model training history
-├── prediction_history.json     # Prediction history log
+# 🔢 MNIST AI – Handwritten Digit Recognition
+
+
+## 📌 Overview
+
+**MNIST AI** is a deep learning project designed to recognize handwritten digits (0–9) from user-drawn or uploaded images.
+
+The system uses a custom-trained Convolutional Neural Network (CNN) based on the MNIST dataset to classify handwritten digits with high accuracy.
+
+It combines a TensorFlow-based prediction engine, OpenCV image preprocessing, and a Flask web application with an interactive drawing canvas and analytics dashboard.
+
+## 🎯 Model Performance
+
+<details>
+<summary><strong>Training and Validation Results</strong></summary>
+
+| Metric | Result |
+|---|---:|
+| Training Accuracy | 99.02% |
+| Validation Accuracy | 99.57% |
+| Training Loss | 0.0365 |
+| Validation Loss | 0.0156 |
+| Training Epochs | 25 |
+| Number of Classes | 10 |
+
+</details>
+
+<badge color="success">99.57% Validation Accuracy</badge>
+
+*Results are based on the saved training history. Actual performance on user-uploaded images may differ.*
+
+## ✨ Features
+
+### ✍️ Handwritten Digit Recognition
+- Recognize handwritten digits from 0 to 9.
+- Draw digits directly on an interactive canvas.
+- Upload handwritten digit images.
+- Display predicted digits instantly.
+- Calculate prediction confidence.
+
+### 🧠 Deep Learning Model
+- Custom CNN architecture.
+- Multiple convolutional layers.
+- Batch Normalization.
+- Max Pooling.
+- Dropout for regularization.
+- Fully connected classification layers.
+- Trained using the MNIST dataset.
+
+### 🖼️ Image Processing
+- Grayscale image conversion.
+- Image resizing to 28×28 pixels.
+- Gaussian Blur.
+- Binary thresholding.
+- Automatic foreground/background inversion.
+- Pixel normalization.
+
+### 📊 Analytics Dashboard
+- Training accuracy visualization.
+- Validation accuracy visualization.
+- Training and validation loss charts.
+- Prediction probability distribution.
+- Prediction speed monitoring.
+- Model architecture information.
+- Model parameter statistics.
+- Server and model health monitoring.
+
+### 📚 Prediction History
+- Save previous predictions.
+- Store confidence scores.
+- Record prediction timestamps.
+- View recent prediction history.
+- Clear prediction history.
+
+### 🌐 Web Application
+- Flask-powered backend.
+- Interactive frontend.
+- Responsive dashboard.
+- AJAX-based prediction requests.
+- Real-time result updates.
+
+## 🛠️ Technologies
+
+| Technology | Purpose |
+|---|---|
+| Python | Core programming |
+| TensorFlow / Keras | Deep learning and model training |
+| CNN | Image classification |
+| OpenCV | Image preprocessing |
+| NumPy | Numerical operations |
+| Flask | Backend and REST API |
+| HTML5 | Web interface |
+| CSS3 | Styling and responsive design |
+| JavaScript | Frontend interactions |
+| Chart.js | Analytics visualization |
+
+## 🧠 Model Architecture
+
+The project uses a custom Convolutional Neural Network consisting of two convolutional blocks and fully connected layers.
+
+```text
+Input Image (28 × 28 × 1)
+          |
+          v
+   Conv2D (32 filters)
+          |
+   Batch Normalization
+          |
+   Conv2D (32 filters)
+          |
+      MaxPooling
+          |
+       Dropout
+          |
+          v
+   Conv2D (64 filters)
+          |
+   Batch Normalization
+          |
+   Conv2D (64 filters)
+          |
+      MaxPooling
+          |
+       Dropout
+          |
+          v
+        Flatten
+          |
+    Dense (256)
+          |
+       Dropout
+          |
+    Dense (128)
+          |
+    Dense (10)
+          |
+          v
+   Digit Classification
+       (0 - 9)
+```
+
+### Training Configuration
+
+- Dataset: MNIST
+- Input Shape: 28 × 28 × 1
+- Optimizer: Adam
+- Loss Function: Sparse Categorical Crossentropy
+- Batch Size: 128
+- Training Epochs: 25
+- Data Augmentation: Rotation, Zoom, Width Shift, Height Shift
+
+## 📁 Project Structure
+
+```text
+MNIST-AI/
+│
+├── app.py
+├── model.h5
+│
+├── prediction_history.json
+├── training_history.json
+│
 ├── modelp/
-│   └── Emodel.ipynb            # Model training notebook
+│   └── Model.ipynb
+│
 ├── templates/
-│   ├── index.html              # Main dashboard page
-│   └── analytics.html          # Analytics page
+│   ├── index.html
+│   └── analytics.html
+│
 └── static/
     ├── css/
     │   └── style.css
+    │
     └── js/
-        ├── script.js           # Main page logic
-        └── analytics.js        # Analytics page logic
+        ├── script.js
+        └── analytics.js
+```
 
+## ⚙️ Installation
 
+### 1. Clone the Repository
 
-🚀 Installation
+```bash
+git clone https://github.com/YOUR-USERNAME/MNIST-AI.git
 
-Prerequisites
+cd MNIST-AI
+```
 
+### 2. Create a Virtual Environment
 
-
-
-
-Python 3.9 or higher
-
-
-
-pip
-
-Setup Steps
-
-
-
-
-
-Clone the repository:
-
-git clone https://github.com/YOUR_USERNAME/Mnist.git
-cd Mnist
-
-
-
-
-
-Create a virtual environment (recommended):
-
+```bash
 python -m venv venv
-source venv/bin/activate        # Linux / macOS
-# or
-venv\Scripts\activate           # Windows
+```
 
+Activate the environment:
 
+**Windows:**
+```bash
+venv\Scripts\activate
+```
 
+**Linux / macOS:**
+```bash
+source venv/bin/activate
+```
 
+### 3. Install Dependencies
 
-Install dependencies:
+```bash
+pip install tensorflow opencv-python numpy flask
+```
 
-pip install flask tensorflow opencv-python numpy
+### 4. Run the Application
 
-
-
-
-
-Run the application:
-
+```bash
 python app.py
+```
+
+### 5. Open in Browser
+
+```text
+http://127.0.0.1:5000
+```
+
+## 🔌 API Endpoints
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/` | GET | Main application |
+| `/analytics` | GET | Analytics dashboard |
+| `/predict` | POST | Predict handwritten digits |
+| `/history` | GET | Retrieve prediction history |
+| `/clear-history` | POST | Clear prediction history |
+| `/analytics-data` | GET | Retrieve analytics data |
+| `/training-history` | GET | Retrieve training metrics |
+| `/model-summary` | GET | Retrieve model architecture |
+| `/system-info` | GET | Retrieve system information |
+| `/health` | GET | Check server and model status |
+
+## 🔄 Prediction Workflow
+
+```text
+User Draws or Uploads an Image
+              |
+              v
+       Flask API Request
+              |
+              v
+      OpenCV Preprocessing
+              |
+              v
+       Resize to 28×28
+              |
+              v
+       Pixel Normalization
+              |
+              v
+        CNN Model (Keras)
+              |
+              v
+      Probability Calculation
+              |
+              v
+       Predicted Digit + Confidence
+              |
+              v
+       Save Prediction History
+              |
+              v
+        Display Dashboard
+```
+
+## 🔮 Future Improvements
+
+- [ ] Improve recognition of real-world handwriting.
+- [ ] Add support for multiple-digit recognition.
+- [ ] Add model evaluation and confusion matrix generation.
+- [ ] Export predictions as CSV reports.
+- [ ] Add prediction confidence visualization.
+- [ ] Improve image preprocessing and noise removal.
+- [ ] Support additional handwritten character datasets.
+- [ ] Deploy the application online.
+
+## 👨‍💻 Developer
+
+**Bardia Mirzaei**
+
+AI & Software Development Enthusiast
+
+- GitHub: [@bardiamirzaei2012-dev](https://github.com/bardiamirzaei2012-dev)
+- Website: [bardiamirzaei.com](https://bardiamirzaei.com)
+
+## 📄 License
+
+This project is available for educational and research purposes. Add an appropriate open-source license before redistribution.
 
-
-
-
-
-Open in your browser:
-
-http://localhost:5000
-
-
-
-📖 Usage
-
-
-
-
-
-Go to the main dashboard.
-
-
-
-Draw a digit on the black canvas using your mouse or finger, or upload an image of a handwritten digit.
-
-
-
-Click the Predict button.
-
-
-
-View the predicted digit, confidence score, and probability distribution.
-
-
-
-Visit the Analytics page to see training curves and prediction history.
-
-
-
-🔌 API Endpoints
-
-
-
-
-
-
-
-Method
-
-
-
-Endpoint
-
-
-
-Description
-
-
-
-
-
-GET
-
-
-
-/
-
-
-
-Main dashboard page
-
-
-
-
-
-GET
-
-
-
-/analytics
-
-
-
-Analytics page
-
-
-
-
-
-POST
-
-
-
-/predict
-
-
-
-Upload image and get prediction
-
-
-
-
-
-GET
-
-
-
-/history
-
-
-
-Retrieve prediction history
-
-
-
-
-
-POST
-
-
-
-/clear-history
-
-
-
-Clear prediction history
-
-
-
-
-
-GET
-
-
-
-/training-history
-
-
-
-Get model training history
-
-
-
-
-
-GET
-
-
-
-/model-summary
-
-
-
-Model layers summary
-
-
-
-
-
-GET
-
-
-
-/system-info
-
-
-
-System and library versions
-
-
-
-
-
-GET
-
-
-
-/health
-
-
-
-Health check
-
-
-
-📸 Preview
-
-
-
-Add screenshots to a screenshots/ folder and update the links below for a better presentation.
-
-
-
-🤝 Contributing
-
-Contributions are welcome! If you have ideas for improvements:
-
-
-
-
-
-Fork the repository
-
-
-
-Create your feature branch (git checkout -b feature/AmazingFeature)
-
-
-
-Commit your changes
-
-
-
-Push to the branch
-
-
-
-Open a Pull Request
-
-
-
-📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-
-
-Built with ❤️ and TensorFlow
-
-If you find this project useful, please give it a ⭐!
